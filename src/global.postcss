@@ -1,0 +1,220 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* ROOT STYLES */
+
+  :root {
+    @apply m-0 p-0 bg-background text-onbackground overflow-x-hidden;
+    font-family: "Fira Mono", "Raleway", "Open Sans", "IBM Plex Mono";
+  }
+
+  :root::-webkit-scrollbar {
+    @apply w-2 bg-transparent;
+  }
+  :root::-webkit-scrollbar-track {
+    @apply w-2 bg-transparent;
+  }
+  :root::-webkit-scrollbar-thumb {
+    @apply w-2 bg-primary rounded-full;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      max-width: none;
+    }
+  }
+
+
+
+
+  /* STYLES FOR DEFAULT ELEMENTS */
+
+  main {
+    @apply w-screen min-h-screen flex flex-col justify-start;
+  }
+
+
+  a { @apply cursor-none -m-4 p-4 hover_underline; }
+  a:hover { @apply transition_all_quick opacity-100}
+
+  button { @apply cursor-none -m-4 p-4; }
+
+
+
+
+/* TEXT-RELATED STYLES */
+
+  .text {
+    @apply inline;
+  }
+  .text::selection {
+    background-color: theme("colors.white");
+    color: theme("colors.black");
+  }
+  .bright_text {
+    @apply text;
+  }
+  .bright_text::selection {
+    background-color: theme("colors.black");
+    color: theme("colors.white");
+  }
+
+  /* TODO: Reduce number of text types? */
+  p1 { @apply text text-xl text-gray-500; }
+  p2 { @apply text; }
+  p3 { @apply text; }
+  p4 { @apply text; }
+  p5 { @apply text; }
+  p6 { @apply text; }
+  h1 { @apply text text-6xl md:text-8xl; }
+  h2 { @apply text text-4xl md:text-6xl hover_underline; }
+  h3 { @apply text text-3xl md:text-4xl uppercase; }
+  h4 { @apply text text-xl md:text-2xl hover_underline; }
+  h5 { @apply text; }
+  h6 { @apply text; }
+    
+    
+  
+
+/* GENERAL CUSTOM CLASSES */
+
+  .click_through {
+    @apply pointer-events-none transition-all duration-500;
+    background: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
+  }
+
+
+  .flex_col_center {
+    @apply flex flex-col justify-center items-center;
+  }
+  .flex_row_center {
+    @apply flex flex-row justify-center items-center;
+  }
+
+    
+  @media (min-width: 640px) {
+    .size_screen {
+      width: calc(100vw - 2 * 4rem);
+      min-height: calc(100vh - 2 * 4rem);
+      margin: 4rem;
+      margin-right: calc(4rem + 4rem);
+    }
+  }
+  @media (max-width: 640px) {
+    .size_screen {
+      width: calc(100vw - 2 * 2rem);
+      min-height: calc(100vh - 2 * 2rem);
+      margin: 2rem;
+      margin-right: calc(2rem + 4rem);
+    }
+  }
+  .inner_size_screen {
+    @apply size_screen m-0;
+    margin: 0;
+  }
+
+
+
+
+/* CUSTOM CUSTOM CLASSES */
+
+  .cursor {
+    @apply
+      pointer-events-none backdrop-invert
+      absolute z-50
+      rounded-full;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    transition-property: height, width, transform;
+    transition-duration: 400ms;
+    transition-timing-function: ease-out;
+  }
+
+
+  .clickable_headline {
+    @apply inner_size_screen p-0 justify-between;
+    display: flex;
+    min-height: 0;
+  }
+
+
+
+
+/* TRANSITIONS */
+
+  .transition_all {
+    transition: all 0.5s ease-in-out;
+  }
+  .transition_all_quick {
+    transition: all 0.2s ease-in-out;
+  }
+  .transition_all_blazing {
+    transition: all 0.1s ease-in-out;
+  }
+
+
+
+
+/* GENERAL ANIMATIONS */
+
+  @media (min-width: 768px) {
+    .hover_underline {
+      @apply inline-block relative;
+    }
+    .hover_underline:after {
+      @apply
+        absolute left-0 bottom-0
+        w-full
+        bg-onbackground
+        transition-all;
+      height: 2px; /* 1px? */
+      content: '';
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.5s ease-in-out;
+    }
+    .hover_underline:hover:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  }
+
+
+
+
+/* KEYFRAMES FOR SCROLLING ANIMATIONS */
+  
+  @keyframes scroll_fade {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+
+  @keyframes scroll_bottom_fade {
+    0% {
+      transform: translateY(10%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+
+  @keyframes scroll_left_fade {
+    0% {
+      transform: translateX(-50vw);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
