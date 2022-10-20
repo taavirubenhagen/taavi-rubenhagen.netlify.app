@@ -1,14 +1,6 @@
 <script lang="ts">
-  import { get } from "svelte/store"
-  import { onMount } from "svelte"
-
   import "./work.postcss"
 	import * as g from "../../stores"
-
-  
-
-
-  onMount(() => g.setupCursor(document))
 </script>
 
 
